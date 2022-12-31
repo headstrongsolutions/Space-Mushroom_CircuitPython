@@ -1,10 +1,45 @@
-# Space-Mushroom
-Very simple and easy to assemble 3D mouse for CAD softwares. It can input full 6 degrees of freedom (rigid motion) simultaneously.
+# Space-Mushroom in Adafruit's Circuit Python
 
-video1 https://youtu.be/g28nm6rG8SY
+Python to support a 6 Degrees Of Freedom (6dof) 'mouse' puck used primarily to support 3D modelling to Rotate/Pan/Zoom.
 
-video2 https://youtu.be/Vs6Xte4gOxk
+## Original source repo and 3D print files
 
-![3dmouse](https://user-images.githubusercontent.com/86639425/210121597-62d3a6ea-fb69-47a5-9122-7c09a419cbf0.jpg)
-![tilted3](https://user-images.githubusercontent.com/86639425/210121605-2f6855a6-ccdc-491b-8f7d-54ceff26ab48.jpg)
-![horizontal1](https://user-images.githubusercontent.com/86639425/210121603-236b0012-ebdd-4906-aa5e-84e759fd86f3.jpg)
+This repo is forked from sh1ra's github repo here: [https://github.com/sh1ura/Space-Mushroom](https://github.com/sh1ura/Space-Mushroom)
+The 3D Printable models for which are here: [https://www.printables.com/model/353764-space-mushroom-full-6-dofs-space-mouse](https://www.printables.com/model/353764-space-mushroom-full-6-dofs-space-mouse)
+
+They do a much better job of explaining using it with example videos etc, so to find out about that head over to their pages.
+
+## Circuit Python
+
+This fork is to change the original Arduino software implementation with a Circuit Python implementation as my personal MCU of choice is the Raspberry Pi Pico.
+Unfortunately the current Micropython builds for Raspberry Pi Pico doesn't have Human Interface Device (HID) implementation yet, or that would be my perfect choice as I feel the toolchain for that is much more mature than Adafruit's Circuit Python.
+
+## Setup
+
+First you need to get the latest stable build of the Circuit Python firmware from: [https://circuitpython.org/board/raspberry_pi_pico/](https://circuitpython.org/board/raspberry_pi_pico/)
+
+For me at time of writing it was top of the page on the right, version 7.3.3, click the purple `DOWNLOAD .UF2 NOW` button.
+When that's downloaded unplug your Pico (if it's plugged in), hold the `BOOTSEL` button on it and plug it into your computer, keep holding the button for a couple of seconds after plugging it in and you should see a new usb media device connected to your computer.
+Copy and paste the file that was downloaded from circuitpython.org to the pico usb media device and it will automatically reboot the pico when it's finished.
+
+You should now see a different usb media device, on my machine it's `CIRCUITPY`, in that device open up the `code.py` in any text editor and replace the contents with the following:
+
+```python
+import board
+import digitalio
+import time
+
+led = digitalio.DigitalInOut(board.LED)
+led.direction = digitalio.Direction.OUTPUT
+
+while True:
+    led.value = True
+    time.sleep(0.5)
+    led.value = False
+    time.sleep(0.5)
+```
+
+...and save the file.
+As soon as you save the file it will automatically run it and the LED on the Pico will start flashing!
+
+This is all you need to set up to deploy code changes to Circuit Python on the Pico, it really is as simple as that :)
