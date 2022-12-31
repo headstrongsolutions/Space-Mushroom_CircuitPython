@@ -43,3 +43,7 @@ while True:
 As soon as you save the file it will automatically run it and the LED on the Pico will start flashing!
 
 This is all you need to set up to deploy code changes to Circuit Python on the Pico, it really is as simple as that :)
+
+## Analogue Pins
+
+**[bonce] Quick update to say I've just realised there's only 3 exposed analogue pins on the Raspberry Pico, so I've ordered some of [these](https://amzn.eu/d/4thSg6t) to add to the Pico to give a bunch more analogue pins, will be a few days before they arrive so I'll do as much as I can on the code in the background while I listen for the doorbell.**
