@@ -46,4 +46,10 @@ This is all you need to set up to deploy code changes to Circuit Python on the P
 
 ## Analogue Pins
 
-**[bonce] Quick update to say I've just realised there's only 3 exposed analogue pins on the Raspberry Pico, so I've ordered some of [these](https://amzn.eu/d/4thSg6t) to add to the Pico to give a bunch more analogue pins, will be a few days before they arrive so I'll do as much as I can on the code in the background while I listen for the doorbell.**
+The Raspberry Pico only has 3 analogue pins, and the Space Mushroom needs 6, so to get around this I'll be using 2 PCF8591's to add 8 additional analogue input pins.
+
+I could use just one PCF8591 and use the on board analogue pins, however the PCF8591 uses I2C to communicate the digital signals back to the Pico, so rather than have some of the inputs directly as analog reads and the others as digital it's simpler to manage if they are all of the same type.
+
+There is a Adafruit Circuit Python library to manage PCF8591's (details [here](https://docs.circuitpython.org/projects/pcf8591/en/latest/).
+
+There are jumpers on them to manage the I2C addresses each module uses, so multiples can be operated on the same I2C bus.
