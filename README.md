@@ -44,6 +44,13 @@ As soon as you save the file it will automatically run it and the LED on the Pic
 
 This is all you need to set up to deploy code changes to Circuit Python on the Pico, it really is as simple as that :)
 
+### Dependancies
+
+Requires:
+
+- adafruit-pcf8591
+- adafruit-hid
+
 ## Analogue Pins
 
 The Raspberry Pico only has 3 analogue pins, and the Space Mushroom needs 6, so to get around this I'll be using 2 PCF8591's to add 8 additional analogue input pins.
