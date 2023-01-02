@@ -75,14 +75,14 @@ COEFF = {
 
 origin = []
 
+sx = 0
+sy = 0
+sw = 0
+
 def setup():
     time.sleep(WAKING_DELAY)
     for pin_index in range(len(ANALOGUE_PINS)-1):
         origin[pin_index] = ANALOGUE_PINS[pin_index].value
-
-sx = 0
-sy = 0
-sw = 0
 
 def move(x: int, y: int, w: int):
     global sx 
@@ -123,6 +123,7 @@ def reset_move():
     sw = 0
 
 def main():
+    setup()
     while True:
         sv = []
         mv = []
@@ -163,3 +164,6 @@ def main():
         reset_move()
 
         time.sleep(DELAY)
+
+if __name__ == "__main__":
+    main()
