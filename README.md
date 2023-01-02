@@ -88,13 +88,14 @@ Also required
 
 These pins will need to be tapped directly from the chip pins to set the address of each board.
 They need to be beeped out to find out where the pins are being shorted to set the address.
+
 *note - googlage is showing that on some boards all three pins are shorted, so just by lifting individual legs of the chip, different addresses are potentially available. Will know more when they arrive.*
 
 ![PCF8591 Address Pins](pcf8591_addr_pins.svg)
 
 #### Implementation
 
-** Board 1 ** 
+**Board 1** 
  - AOUT is unused
  - Set address to 0x048 by lifting all three address pins (5,6 & 7)
  - P4/5/6 jumpers to be removed to enable AIN0/1/3 input pins
@@ -107,7 +108,7 @@ They need to be beeped out to find out where the pins are being shorted to set t
  - SDA on Pico pin 0 GP0 I2C0 SDA
  - SCL on Pico pin 1 GP1 I2C0 SCL
 
-** Board 2 ** 
+**Board 2** 
  - AOUT is unused
  - Set address to 0x049 by lifting all but pin 5 address pins (6 & 7)
  - P4/5/6 jumpers to be removed to enable AIN0/1/3 input pins
