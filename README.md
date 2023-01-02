@@ -57,7 +57,7 @@ The Raspberry Pico only has 3 analogue pins, and the Space Mushroom needs 6, so 
 
 I could use just one PCF8591 and use the on board analogue pins, however the PCF8591 uses I2C to communicate the digital signals back to the Pico, so rather than have some of the inputs directly as analog reads and the others as digital it's simpler to manage if they are all of the same type.
 
-There is a Adafruit Circuit Python library to manage PCF8591's (details [here](https://docs.circuitpython.org/projects/pcf8591/en/latest/).
+There is a Adafruit Circuit Python library to manage PCF8591's (details [here](https://docs.circuitpython.org/projects/pcf8591/en/latest/)).
 
 ### PCF8591 specifics
 
@@ -89,7 +89,7 @@ Also required
 These pins will need to be tapped directly from the chip pins to set the address of each board.
 They need to be beeped out to find out where the pins are being shorted to set the address.
 
-*note - googlage is showing that on some boards all three pins are shorted, so just by lifting individual legs of the chip, different addresses are potentially available. Will know more when they arrive.*
+*note: googlage is showing that on some boards all three pins are shorted, so just by lifting individual legs of the chip, different addresses are potentially available. Will know more when they arrive.*
 
 ![PCF8591 Address Pins](pcf8591_addr_pins.svg)
 
@@ -120,3 +120,9 @@ They need to be beeped out to find out where the pins are being shorted to set t
  - VCC to Pico 3.3 on pin 36
  - SDA on Pico pin 0 GP0 I2C0 SDA
  - SCL on Pico pin 1 GP1 I2C0 SCL
+
+#### Fritzing Sketch
+
+![Fritzing Sketch](Space-Mushroom-Pico_bb.png)
+
+*note: I've used the Adafruit part here for the diagram, however my boards have their pins in different locations*
