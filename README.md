@@ -59,4 +59,63 @@ I could use just one PCF8591 and use the on board analogue pins, however the PCF
 
 There is a Adafruit Circuit Python library to manage PCF8591's (details [here](https://docs.circuitpython.org/projects/pcf8591/en/latest/).
 
-There are jumpers on them to manage the I2C addresses each module uses, so multiples can be operated on the same I2C bus.
+### PCF8591 specifics
+
+This is the layout of the pins on my PCF8591 boards:
+
+| Symbol | Pin | Description                |
+|--------|-----|----------------------------|
+|  AOUT  |  15 | Analogue output            |
+|  AIN0  |   1 | Analogue input             |
+|  AIN1  |   2 | Analogue input             |
+|  AIN2  |   3 | Analogue input             |
+|  AIN3  |   4 | Analogue input             |
+|  SCL   |  10 | I2C-bus serial clock in    |
+|  SDA   |   9 | I2C-bus serial data in/out |
+|  GND   |  13 | Analogue ground supply     |
+|  VCC   |  16 | 3.3 from Pico pin 36       |
+|   P4   |  NA | Onboard temperature sensor |
+|   P5   |  NA | Onboard photoresistor      |
+|   P6   |  NA | Onboard 10k trimpot        |
+
+Also required
+
+| Symbol | Pin | Description                |
+|--------|-----|----------------------------|
+|   A0   |  5  | Hardware slave address     |
+|   A1   |  6  | Hardware slave address     |
+|   A2   |  7  | Hardware slave address     |
+
+These pins will need to be tapped directly from the chip pins to set the address of each board.
+They need to be beeped out to find out where the pins are being shorted to set the address.
+*note - googlage is showing that on some boards all three pins are shorted, so just by lifting individual legs of the chip, different addresses are potentially available. Will know more when they arrive.*
+
+![PCF8591 Address Pins](pcf8591_addr_pins.svg)
+
+#### Implementation
+
+** Board 1 ** 
+ - AOUT is unused
+ - Set address to 0x048 by lifting all three address pins (5,6 & 7)
+ - P4/5/6 jumpers to be removed to enable AIN0/1/3 input pins
+ - AIN0 connects to Stick1_VRX_PIN
+ - AIN1 connects to Stick1_VRY_PIN
+ - AIN2 connects to Stick2_VRX_PIN
+ - AIN3 connects to Stick2_VRY_PIN
+ - GND to Pico GND
+ - VCC to Pico 3.3 on pin 36
+ - SDA on Pico pin 0 GP0 I2C0 SDA
+ - SCL on Pico pin 1 GP1 I2C0 SCL
+
+** Board 2 ** 
+ - AOUT is unused
+ - Set address to 0x049 by lifting all but pin 5 address pins (6 & 7)
+ - P4/5/6 jumpers to be removed to enable AIN0/1/3 input pins
+ - AIN0 connects to Stick3_VRX_PIN
+ - AIN1 connects to Stick3_VRY_PIN
+ - AIN2 is unused
+ - AIN3 is unused
+ - GND to Pico GND
+ - VCC to Pico 3.3 on pin 36
+ - SDA on Pico pin 0 GP0 I2C0 SDA
+ - SCL on Pico pin 1 GP1 I2C0 SCL
