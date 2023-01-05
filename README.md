@@ -126,3 +126,8 @@ They need to be beeped out to find out where the pins are being shorted to set t
 ![Fritzing Sketch](Space-Mushroom-Pico_bb.png)
 
 *note: I've used the Adafruit part here for the diagram, however my boards have their pins in different locations*
+
+## Implementation, testing and findings
+
+I've been playing with the device with how it wants to be used as a HID Mouse and I think there's some critical issues here as it's constantly tricking out the main mouse.
+This might just be because using python is too slow so I'm able to get in the way of the control keys being sent and other issues (I'm still working on getting it working nicely with the readings taken from the analogue pins, so it's jumping around), but I'm looking at whether I can use it with [SpaceNavD](https://github.com/FreeSpacenav/spacenavd) so it at least is on it's own control layer.
